@@ -194,41 +194,45 @@ function initLogin() {
         });
     }
 
-    // Submit
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const tid   = document.getElementById("teamId").value.trim();
-        const house = document.getElementById("houseName").value.trim();
-        const room  = document.getElementById("roomNumber").value.trim();
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-        const match = TEAMS.find(
-            (t) =>
-                t.team_id.toLowerCase()     === tid.toLowerCase() &&
-                t.house_name.toLowerCase()  === house.toLowerCase() &&
-                t.room_number.toLowerCase() === room.toLowerCase()
-        );
+    const tid   = document.getElementById("teamId").value.trim();
+    const house = document.getElementById("houseName").value.trim();
+    const room  = document.getElementById("roomNumber").value.trim();
 
-        if (match) {
-            errorMsg.classList.remove("visible");
-            playMagicChime();
+    // 🔥 normalize function
+    const normalize = (str) =>
+        str.toLowerCase().replace(/[-\s]/g, ""); // remove - and spaces
 
-            sessionStorage.setItem("wizard_team_id",     match.team_id);
-            sessionStorage.setItem("wizard_house_name",  match.house_name);
-            sessionStorage.setItem("wizard_room_number", match.room_number);
+    const match = TEAMS.find(
+        (t) =>
+            t.team_id.toLowerCase() === tid.toLowerCase() &&
+            t.house_name.toLowerCase() === house.toLowerCase() &&
+            normalize(t.location) === normalize(room) // 👈 FIX
+    );
 
-            transition.classList.add("active");
-            if (typeof gsap !== "undefined") {
-                gsap.to(card, { scale: 0.92, opacity: 0, duration: 0.45, ease: "power2.in" });
-            }
-            setTimeout(() => { window.location.href = "dashboard.html"; }, 750);
-        } else {
-            errorMsg.classList.add("visible");
-            if (typeof gsap !== "undefined") {
-                gsap.fromTo(card, { x: -5 }, { x: 0, duration: 0.35, ease: "elastic.out(1,0.3)" });
-            }
-            setTimeout(() => { errorMsg.classList.remove("visible"); }, 3500);
+    if (match) {
+        errorMsg.classList.remove("visible");
+        playMagicChime();
+
+        sessionStorage.setItem("wizard_team_id", match.team_id);
+        sessionStorage.setItem("wizard_house_name", match.house_name);
+        sessionStorage.setItem("wizard_room_number", match.location);
+
+        transition.classList.add("active");
+        if (typeof gsap !== "undefined") {
+            gsap.to(card, { scale: 0.92, opacity: 0, duration: 0.45, ease: "power2.in" });
         }
-    });
+        setTimeout(() => { window.location.href = "dashboard.html"; }, 750);
+    } else {
+        errorMsg.classList.add("visible");
+        if (typeof gsap !== "undefined") {
+            gsap.fromTo(card, { x: -5 }, { x: 0, duration: 0.35, ease: "elastic.out(1,0.3)" });
+        }
+        setTimeout(() => { errorMsg.classList.remove("visible"); }, 3500);
+    }
+});
 }
 
 

@@ -57,5 +57,10 @@ export const TEAMS = [
   {"team_id":"TMFBBSB","house_name":"Slytherin","location":"SF-215"},
   {"team_id":"TMWDBH5","house_name":"Slytherin","location":"SF-215"},
   {"team_id":"TM4XZEZ","house_name":"Slytherin","location":"SF-215"},
-  {"team_id":"TMDKWXG","house_name":"Slytherin","location":"SF-215"}
-];
+  {"team_id":"TMDKWXG","house_name":"Slytherin","location":"SF-215"},
+
+  {"team_id":"TMPGFM4","house_name":"Gryffindor","location":"SF-203"},
+  {"team_id":"TMJT9J9","house_name":"Gryffindor","location":"SF-203"},
+  {"team_id":"TM3PZUL","house_name":"Gryffindor","location":"SF-203"},
+  {"team_id":"TM6G5FP","house_name":"Gryffindor","location":"SF-203"},
+  {"team_id":"TM38W5R","house_name":"Gryffindor","location":"SF-203"},

@@ -64,3 +64,4 @@ export const TEAMS = [
   {"team_id":"TM3PZUL","house_name":"Gryffindor","location":"SF-203"},
   {"team_id":"TM6G5FP","house_name":"Gryffindor","location":"SF-203"},
   {"team_id":"TM38W5R","house_name":"Hufflepuff","location":"SF-203"},
+]
